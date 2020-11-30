@@ -111,11 +111,6 @@ namespace Platformer.Mechanics
                 else if (!flying)
                     velocity += Physics2D.gravity * Time.deltaTime;
 
-                // if (velocity.y > 0) {
-                //     Debug.Log("ignore");
-                //     Physics2D.IgnoreLayerCollision(0, 8);
-                // }
-
                 velocity.x = targetVelocity.x;
 
                 IsGrounded = false;

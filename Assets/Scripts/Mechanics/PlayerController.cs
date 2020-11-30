@@ -43,6 +43,7 @@ namespace Platformer.Mechanics
         SpriteRenderer spriteRenderer;
         internal Animator animator;
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
+        public Checkpoint checkpoint;
 
         public Bounds Bounds => collider2d.bounds;
 
@@ -216,12 +217,7 @@ namespace Platformer.Mechanics
             }
             else if (stopJump)
             {
-                
                 stopJump = false;
-                // if (velocity.y > 0)
-                // {
-                //     velocity.y = velocity.y * model.jumpDeceleration;
-                // }
             }
 
             if (move.x > .0f)
@@ -245,25 +241,6 @@ namespace Platformer.Mechanics
                 feet.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = flipX;
                 feet.transform.localPosition = new Vector3(flipX ? .02f : 0, 0, 0);
             }
-            // if (move.x > 0.01f) {
-            //     spriteRenderer.flipX = false;
-            //     if (head != null)
-            //         head.flipX = false;
-            //     if (feet != null) {
-            //         feet.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().flipX = false;
-            //         feet.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = false;
-            //         feet.transform.localPosition = new Vector3(0, 0, 0);
-            //     }
-            // } else if (move.x < -0.01f) {
-            //     spriteRenderer.flipX = true;
-            //     if (head != null)
-            //         head.flipX = true;
-            //    if (feet != null) {
-            //         feet.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            //         feet.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            //         feet.transform.localPosition = new Vector3(.02f, 0, 0);
-            //     }
-            // }
         }
 
         public void AddPower(Power power) {
@@ -288,6 +265,10 @@ namespace Platformer.Mechanics
             Jumping,
             InFlight,
             Landed
+        }
+
+        public void SetCheckpoint(Checkpoint checkpoint) {
+            this.checkpoint = checkpoint;
         }
     }
 }
