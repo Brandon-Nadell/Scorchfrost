@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1601268328239693233}
   - component: {fileID: 1601268328239693232}
-  - component: {fileID: 1601268328239693231}
-  - component: {fileID: 5069515034281996905}
+  - component: {fileID: 295268615}
+  - component: {fileID: 7269640393545063363}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1601268328239693231
+--- !u!114 &295268615
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d94e22a8348f411c97f9f1741068503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!68 &5069515034281996905
-EdgeCollider2D:
+--- !u!60 &7269640393545063363
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,12 +105,23 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.15, y: 0.32}
+    newSize: {x: 0.15, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -0.075025395, y: -0.15001081}
-  - {x: 0.00030313083, y: 0.16009255}
-  - {x: 0.074938044, y: -0.15000457}
+    m_Paths:
+    - - {x: -0.000020053209, y: 0.16007273}
+      - {x: -0.0749974, y: -0.15001738}
+      - {x: -0.074999996, y: -0.16}
+      - {x: 0.074999996, y: -0.16}
+      - {x: 0.075004645, y: -0.15005131}

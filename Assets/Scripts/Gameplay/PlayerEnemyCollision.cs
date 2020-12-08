@@ -22,8 +22,9 @@ namespace Platformer.Gameplay
         {
             var willHurtEnemy = player.Bounds.center.y >= enemy.Bounds.max.y;
             if (willHurtEnemy) {
-                if (player.feetPower == PlayerController.Power.Ice) {
+                if (player.feetPower == PlayerController.Power.Ice && player.Bounds.min.y + .1f >= enemy.Bounds.max.y) {
                     enemy.CreateIce();
+                    // player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + diff, player.transform.position.z);
                     enemy.path = null;
                     enemy.mover = null;
                     enemy._collider.enabled = false;
@@ -51,7 +52,7 @@ namespace Platformer.Gameplay
                         }
                     }
                 }
-            } else if (player.headPower == PlayerController.Power.Fire && player.Bounds.max.y <= enemy.Bounds.center.y && Mathf.Abs(player.Bounds.center.x - enemy.Bounds.center.x) < 2) {
+            } else if (player.headPower == PlayerController.Power.Fire && !enemy.immuneToFire && player.Bounds.max.y <= enemy.Bounds.center.y && Mathf.Abs(player.Bounds.center.x - enemy.Bounds.center.x) < 2) {
                 var enemyHealth = enemy.GetComponent<Health>();
                 if (enemyHealth != null) {
                     enemyHealth.Decrement();

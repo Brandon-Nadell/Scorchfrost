@@ -13,10 +13,4 @@ public class LavaDamagerController : MonoBehaviour
             Schedule<Damager>();
         }
     }
-    void OnTriggerStay2D(Collider2D collision) {
-        var player = collision.gameObject.GetComponent<PlayerController>();
-        if (player.feetPower != PlayerController.Power.Fire) {
-            Schedule<Damager>();
-        }
-    }
 }

@@ -11,7 +11,7 @@ public class SemiSolid : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (model.player.velocity.y >= 0 || model.player.GetComponent<Collider2D>().bounds.min.y < GetComponent<Collider2D>().bounds.max.y) {
+        if (model.player.velocity.y > 0 || model.player.GetComponent<Collider2D>().bounds.min.y < GetComponent<Collider2D>().bounds.max.y) {
             GetComponent<Collider2D>().enabled = false;
         } else {
             GetComponent<Collider2D>().enabled = true;

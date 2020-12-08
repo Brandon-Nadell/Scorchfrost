@@ -22,6 +22,7 @@ namespace Platformer.Mechanics
         SpriteRenderer spriteRenderer;
 
         public GameObject iceBlock;
+        public bool immuneToFire;
 
         public Bounds Bounds => _collider.bounds;
 

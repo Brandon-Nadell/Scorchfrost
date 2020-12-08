@@ -31,7 +31,9 @@ public class SceneObjectGUIDManager
         Assert.IsFalse(string.IsNullOrEmpty(component.id));
 
         //Add will trow an exception if the id is already registered
-        components.Add(component.id, component);
+
+        if (!components.ContainsKey(component.id))
+            components.Add(component.id, component);
     }
 
     public bool Contains(string id)

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Platformer.Core;
+using Platformer.Model;
 using UnityEngine;
 
 namespace Platformer.Mechanics
@@ -76,7 +78,8 @@ namespace Platformer.Mechanics
         protected virtual void OnEnable()
         {
             body = GetComponent<Rigidbody2D>();
-            body.isKinematic = true;
+            // body.isKinematic = true;
+            body.isKinematic = Simulation.GetModel<PlatformerModel>().player == this;
         }
 
         protected virtual void OnDisable()
@@ -106,10 +109,20 @@ namespace Platformer.Mechanics
         {
             if (!immobile) {
                 //if already falling, fall faster than the jump speed, otherwise use normal gravity.
-                if (velocity.y < 0)
+                // if (velocity.y < 0)
+                //     velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+                // else if (!flying)
+                //     velocity += Physics2D.gravity * Time.deltaTime;
+                if (velocity.y < 0) {
                     velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
-                else if (!flying)
+                    if (Simulation.GetModel<PlatformerModel>().player == this && Simulation.GetModel<PlatformerModel>().player.GetComponent<PlayerController>().feetPower == PlayerController.Power.Air) {
+                        if (velocity.y < -1) {
+                            velocity = new Vector2(velocity.x, -1);
+                        }
+                    }
+                } else if (!flying) {
                     velocity += Physics2D.gravity * Time.deltaTime;
+                }
 
                 velocity.x = targetVelocity.x;
 

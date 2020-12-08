@@ -5,6 +5,7 @@ using Platformer.Gameplay;
 using static Platformer.Core.Simulation;
 using Platformer.Model;
 using Platformer.Core;
+using UnityEngine.UI;
 
 namespace Platformer.Mechanics
 {
@@ -44,8 +45,17 @@ namespace Platformer.Mechanics
         internal Animator animator;
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
         public Checkpoint checkpoint;
+        public Text livesText;
+        public int lives;
+        public int livesMax = 5;
+        public bool touchingPowerStation;
+        int powerstationindex;
 
         public Bounds Bounds => collider2d.bounds;
+        // public List<Pusher> pushers;
+        public Pusher pusherL;
+        public Pusher pusherR;
+        public Pusher pusherB;
 
 
         bool flipX;
@@ -54,7 +64,7 @@ namespace Platformer.Mechanics
 
         public Power headPower;
         public Power feetPower;
-        List<Power> powers;
+        public List<Power> powers;
 
 
         public SpriteRenderer fireHead;
@@ -75,7 +85,7 @@ namespace Platformer.Mechanics
             None
         }
 
-        void SetPowers() {
+        public void SetPowers() {
             switch (headPower) {
                 case Power.Fire:
                     head = fireHead;
@@ -121,6 +131,8 @@ namespace Platformer.Mechanics
             animator = GetComponent<Animator>();
 
             powers = new List<Power>();
+
+            ResetLives();
         }
 
         protected override void Update()
@@ -148,26 +160,68 @@ namespace Platformer.Mechanics
                 }
 
                 if (Input.GetButtonDown("Swap")) {
-                    if (head != null)
-                        head.gameObject.SetActive(false);
-                    if (feet != null)
-                        feet.SetActive(false);
+                    if (!touchingPowerStation) {
+                        if (head != null)
+                            head.gameObject.SetActive(false);
+                        if (feet != null)
+                            feet.SetActive(false);
 
-                    Power temp = headPower;
-                    headPower = feetPower;
-                    feetPower = temp;
-                    SetPowers();
+                        Power temp = headPower;
+                        headPower = feetPower;
+                        feetPower = temp;
+                        SetPowers();
 
-                    if (head != null)
-                        head.gameObject.SetActive(true);
-                    if (feet != null)
-                        feet.SetActive(true);
+                        if (head != null)
+                            head.gameObject.SetActive(true);
+                        if (feet != null)
+                            feet.SetActive(true);
 
-                    SetFlips();
+                        SetFlips();
+                    } else {
+                        if (powers.Count >= 3) {
+                            PlayerController.Power newpower;
+                            do {
+                                powerstationindex++;
+                                newpower = powers[powerstationindex % powers.Count];
+                            } while (newpower == feetPower || newpower == headPower);
+                            // Debug.Log(newpower);
+
+                            if (head != null)
+                                head.gameObject.SetActive(false);
+                            headPower = newpower;
+                            SetPowers();
+                            if (head != null)
+                                head.gameObject.SetActive(true);
+                            SetFlips();
+                        }
+                    }
+                } else {
+                    // touchingPowerStation = false;
                 }
 
                 if (headPower != Power.Ice) {
                     flying = false;
+                }
+
+                if (feetPower == Power.Air) {
+                    gravityModifier = .1f;
+                } else {
+                    gravityModifier = 1.5f;
+                }
+
+                if (headPower == Power.Air) {
+                    // pusher.gameObject.SetActive(true);
+                    pusherL.gameObject.SetActive(velocity.x > .01);
+                    pusherR.gameObject.SetActive(velocity.x < -.01);
+                    pusherB.gameObject.SetActive(true);
+                    // pusherL.gameObject.transform.position = new Vector3(transform.position.x - .36f, transform.position.y + .78f, -1);
+                    // pusherR.gameObject.transform.position = new Vector3(transform.position.x + .36f, transform.position.y + .78f, -1);
+                    // pusherB.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + .55f, -1);
+                } else {
+                    // pusher.gameObject.SetActive(false);
+                    pusherL.gameObject.SetActive(false);
+                    pusherR.gameObject.SetActive(false);
+                    pusherB.gameObject.SetActive(false);
                 }
             }
             else
@@ -269,6 +323,11 @@ namespace Platformer.Mechanics
 
         public void SetCheckpoint(Checkpoint checkpoint) {
             this.checkpoint = checkpoint;
+        }
+
+        public void ResetLives() {
+            lives = livesMax;
+            livesText.text = "Lives: " + lives;
         }
     }
 }

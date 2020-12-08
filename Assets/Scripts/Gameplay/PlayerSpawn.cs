@@ -1,6 +1,7 @@
 using Platformer.Core;
 using Platformer.Mechanics;
 using Platformer.Model;
+using UnityEngine;
 
 namespace Platformer.Gameplay
 {
@@ -14,6 +15,22 @@ namespace Platformer.Gameplay
         public override void Execute()
         {
             var player = model.player;
+            player.lives--;
+            if (player.lives == 0) {
+                player.lives = player.livesMax;
+                player.checkpoint = null;
+                //reset checkpoints, enemies, and player powers
+                // foreach (Checkpoint cp : checkpoints) {
+                //     cp.GetComponent<Animator>().SetBool("collected", false);
+                // }
+                // foreach (EnemyController e : enemies) {
+                //     e.Reset();
+                //     -> {
+                //         e.state = original = state;
+                //     }
+                // }
+            }
+            player.livesText.text = "Lives: " + player.lives;
             player.collider2d.enabled = true;
             player.controlEnabled = false;
             if (player.audioSource && player.respawnAudio)
