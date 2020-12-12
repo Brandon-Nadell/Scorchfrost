@@ -23,7 +23,7 @@ namespace Platformer.Gameplay
             var willHurtEnemy = player.Bounds.center.y >= enemy.Bounds.max.y;
             if (willHurtEnemy) {
                 if (player.feetPower == PlayerController.Power.Ice && player.Bounds.min.y + .1f >= enemy.Bounds.max.y) {
-                    enemy.CreateIce();
+                    enemy.CreateIce(player);
                     // player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + diff, player.transform.position.z);
                     enemy.path = null;
                     enemy.mover = null;
@@ -42,13 +42,17 @@ namespace Platformer.Gameplay
                         if (!enemyHealth.IsAlive && !enemy.GetComponent<AnimationController>().invulnerable) {
                             Schedule<EnemyDeath>().enemy = enemy;
                             player.Bounce(5.5f);
+                            player.GetComponent<AudioSource>().PlayOneShot(player.jumpAudio, 1f);
                         } else {
                             player.Bounce(5.5f);
+                            player.GetComponent<AudioSource>().PlayOneShot(player.jumpAudio, 1f);
                         }
                     } else {
                         player.Bounce(5.5f);
                         if (!enemy.GetComponent<AnimationController>().invulnerable) {
                             Schedule<EnemyDeath>().enemy = enemy;
+                        } else {
+                            player.GetComponent<AudioSource>().PlayOneShot(player.jumpAudio, 1f);
                         }
                     }
                 }
@@ -59,9 +63,11 @@ namespace Platformer.Gameplay
                     if (!enemyHealth.IsAlive)
                     {
                         Schedule<EnemyDeath>().enemy = enemy;
+                        player.GetComponent<AudioSource>().PlayOneShot(player.fireAudio, 1f);
                     }
                 } else {
                     Schedule<EnemyDeath>().enemy = enemy;
+                    player.GetComponent<AudioSource>().PlayOneShot(player.fireAudio, 1f);
                 }
             } else {
                 Schedule<PlayerDeath>();

@@ -156,6 +156,7 @@ namespace Platformer.Mechanics
                     var currentNormal = hitBuffer[i].normal;
 
                     //is this surface flat enough to land on?
+                    // Debug.Log(currentNormal.y + " " + minGroundNormalY);
                     if (currentNormal.y > minGroundNormalY)
                     {
                     IsGrounded = true;
@@ -168,6 +169,7 @@ namespace Platformer.Mechanics
                     } else if (currentNormal.y != -1) {
                         accel = 0f;
                     }
+                    Debug.Log(IsGrounded);
                     if (true)
                     {
                         //how much of our velocity aligns with surface normal?

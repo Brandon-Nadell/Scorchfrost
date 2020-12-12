@@ -12,13 +12,22 @@ namespace Platformer.Mechanics
     /// </summary>
     public class DeathZone : MonoBehaviour
     {
+
+        public AudioClip clip;
+
         void OnTriggerEnter2D(Collider2D collider)
         {
             var p = collider.gameObject.GetComponent<PlayerController>();
             if (p != null)
             {
+                p.GetComponent<AudioSource>().PlayOneShot(clip, 1f);
                 var ev = Schedule<PlayerEnteredDeathZone>();
                 ev.deathzone = this;
+            }
+            var e = collider.gameObject.GetComponent<EnemyController>();
+            if (e != null) {
+                // e.shouldReset = true;
+                e.gameObject.SetActive(false);
             }
         }
     }

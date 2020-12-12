@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - Checkpoint
+    - GhostFader
     - IceCeiling
     - LavaDamagerController
     - Platformer.Mechanics.AnimationController
@@ -12,13 +13,14 @@ ScriptsOnlyBuild:
     - Platformer.Mechanics.PatrolPath
     - Platformer.Mechanics.PlayerController
     - Platformer.Mechanics.TokenController
-    - Platformer.Mechanics.TokenInstance
     - Platformer.Mechanics.VictoryZone
     - Platformer.UI.MainUIController
     - Platformer.UI.MetaGameController
     - Platformer.View.ParallaxLayer
     - PlayAudioClip
+    - PowerStation
     - PowerUp
+    - Pusher
     - SemiSolid
     - SpikeDamagerController
     Cinemachine.dll:
@@ -37,6 +39,15 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.PaintableSceneViewGrid
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
+    Unity.2D.Tilemap.Extras.Editor.dll:
+    - UnityEditor.Tilemaps.CoordinateBrush
+    - UnityEditor.Tilemaps.GameObjectBrush
+    - UnityEditor.Tilemaps.GroupBrush
+    - UnityEditor.Tilemaps.LineBrush
+    - UnityEditor.Tilemaps.RandomBrush
+    - UnityEditor.Tilemaps.RandomBrush2
+    - UnityEditor.Tilemaps.TintBrush
+    - UnityEditor.Tilemaps.TintBrushSmooth
     Unity.InteractiveTutorials.Core.Scripts.dll:
     - SceneObjectGUIDComponent
     Unity.InteractiveTutorials.Core.dll:
@@ -65,10 +76,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -82,6 +91,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Text
   sceneClasses:
     Assets/test.unity:
     - Class: 1
@@ -101,8 +111,6 @@ ScriptsOnlyBuild:
     - Class: 49
       Script: {instanceID: 0}
     - Class: 50
-      Script: {instanceID: 0}
-    - Class: 58
       Script: {instanceID: 0}
     - Class: 60
       Script: {instanceID: 0}
@@ -127,90 +135,96 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 658}
+      Script: {instanceID: 660}
     - Class: 114
-      Script: {instanceID: 11312}
+      Script: {instanceID: 11314}
     - Class: 114
-      Script: {instanceID: 11342}
+      Script: {instanceID: 11346}
     - Class: 114
-      Script: {instanceID: 11640}
+      Script: {instanceID: 11610}
     - Class: 114
-      Script: {instanceID: 11652}
+      Script: {instanceID: 11664}
     - Class: 114
-      Script: {instanceID: 11706}
+      Script: {instanceID: 11688}
     - Class: 114
-      Script: {instanceID: 11752}
+      Script: {instanceID: 11720}
     - Class: 114
-      Script: {instanceID: 12206}
+      Script: {instanceID: 11768}
     - Class: 114
-      Script: {instanceID: 12246}
+      Script: {instanceID: 12122}
     - Class: 114
-      Script: {instanceID: 12264}
+      Script: {instanceID: 12186}
     - Class: 114
-      Script: {instanceID: 12420}
+      Script: {instanceID: 12242}
     - Class: 114
-      Script: {instanceID: 12554}
+      Script: {instanceID: 12286}
     - Class: 114
-      Script: {instanceID: 12610}
+      Script: {instanceID: 12304}
     - Class: 114
-      Script: {instanceID: 12686}
+      Script: {instanceID: 12462}
     - Class: 114
-      Script: {instanceID: 12880}
+      Script: {instanceID: 12598}
     - Class: 114
-      Script: {instanceID: 12908}
+      Script: {instanceID: 12656}
     - Class: 114
-      Script: {instanceID: 13004}
+      Script: {instanceID: 12736}
+    - Class: 114
+      Script: {instanceID: 12934}
+    - Class: 114
+      Script: {instanceID: 12964}
+    - Class: 114
+      Script: {instanceID: 13062}
     - Class: 114
       Script: {instanceID: 13158}
     - Class: 114
-      Script: {instanceID: 13162}
+      Script: {instanceID: 13198}
     - Class: 114
-      Script: {instanceID: 13178}
+      Script: {instanceID: 13220}
     - Class: 114
-      Script: {instanceID: 13180}
+      Script: {instanceID: 13224}
     - Class: 114
-      Script: {instanceID: 13256}
+      Script: {instanceID: 13242}
     - Class: 114
-      Script: {instanceID: 13326}
+      Script: {instanceID: 13244}
     - Class: 114
-      Script: {instanceID: 13432}
+      Script: {instanceID: 13322}
     - Class: 114
-      Script: {instanceID: 13474}
+      Script: {instanceID: 13364}
     - Class: 114
-      Script: {instanceID: 13478}
+      Script: {instanceID: 13396}
     - Class: 114
-      Script: {instanceID: 13564}
+      Script: {instanceID: 13504}
     - Class: 114
-      Script: {instanceID: 13614}
+      Script: {instanceID: 13550}
     - Class: 114
-      Script: {instanceID: 13644}
+      Script: {instanceID: 13554}
     - Class: 114
-      Script: {instanceID: 13788}
+      Script: {instanceID: 13638}
     - Class: 114
-      Script: {instanceID: 13970}
+      Script: {instanceID: 13692}
     - Class: 114
-      Script: {instanceID: 13974}
+      Script: {instanceID: 13724}
     - Class: 114
-      Script: {instanceID: 14050}
+      Script: {instanceID: 13872}
     - Class: 114
-      Script: {instanceID: 14080}
+      Script: {instanceID: 14056}
     - Class: 114
-      Script: {instanceID: 45742}
+      Script: {instanceID: 14060}
     - Class: 114
-      Script: {instanceID: 47918}
+      Script: {instanceID: 14084}
     - Class: 114
-      Script: {instanceID: 730552}
+      Script: {instanceID: 14140}
     - Class: 114
-      Script: {instanceID: 827442}
+      Script: {instanceID: 14154}
     - Class: 114
-      Script: {instanceID: 1048086}
+      Script: {instanceID: 14172}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
-      Script: {instanceID: 0}
-    - Class: 210
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -401,6 +415,12 @@ ScriptsOnlyBuild:
     className: DepthOfField
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Pusher
+  - hash:
+      serializedVersion: 2
       Hash: 234d407605354852c48e57df17c9a1c6
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -423,6 +443,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GridLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 92583f5c853ea78ec8d05eed0dcbb497
+    assemblyName: Unity.2D.Tilemap.Extras.dll
+    namespaceName: UnityEngine.Tilemaps
+    className: RandomTile
   - hash:
       serializedVersion: 2
       Hash: 6dd3dc11942e98c0a809c81f95fc960c
@@ -491,6 +517,18 @@ ScriptsOnlyBuild:
     className: Vignette
   - hash:
       serializedVersion: 2
+      Hash: a6b2af559224144de517faf1083543fb
+    assemblyName: Unity.2D.Tilemap.Extras.dll
+    namespaceName: UnityEngine.Tilemaps
+    className: AdvancedRuleOverrideTile
+  - hash:
+      serializedVersion: 2
+      Hash: 416c1816ed1839dc486d5c35d86ee97e
+    assemblyName: Unity.2D.Tilemap.Extras.dll
+    namespaceName: UnityEngine
+    className: RuleTile
+  - hash:
+      serializedVersion: 2
       Hash: bd3cf68c8964d3c66d1c43f4f98508c9
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -539,6 +577,12 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GhostFader
+  - hash:
+      serializedVersion: 2
       Hash: caa533b001ae39b864ba8425019e2268
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -555,6 +599,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: NoiseSettings
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: IceCeiling
   - hash:
       serializedVersion: 2
       Hash: 7e6ed836cbaa230e56d6a2bbae1b9bb5
@@ -603,6 +653,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Selectable
+  - hash:
+      serializedVersion: 2
+      Hash: ab6a2fed0a3d86e42cbaa680bbf9bfac
+    assemblyName: Unity.2D.Tilemap.Extras.dll
+    namespaceName: UnityEngine.Tilemaps
+    className: AnimatedTile
   - hash:
       serializedVersion: 2
       Hash: 380d3ba99e2d836ad5d66bded133d128
@@ -719,6 +775,18 @@ ScriptsOnlyBuild:
     className: CinemachinePath
   - hash:
       serializedVersion: 2
+      Hash: 7ba35897a6eb27627ed456c682c34253
+    assemblyName: Unity.2D.Tilemap.Extras.dll
+    namespaceName: UnityEngine.Tilemaps
+    className: PipelineTile
+  - hash:
+      serializedVersion: 2
+      Hash: ba62abe34655d7e7cd27c0bf1fa1b39d
+    assemblyName: Unity.2D.Tilemap.Extras.dll
+    namespaceName: UnityEngine.Tilemaps
+    className: RuleOverrideTile
+  - hash:
+      serializedVersion: 2
       Hash: 50c443b12ccc0b475183318b5088bcc5
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
@@ -749,7 +817,13 @@ ScriptsOnlyBuild:
     className: TokenController
   - hash:
       serializedVersion: 2
-      Hash: e7af5e48cc095a194ae0d53dbe9ac245
+      Hash: d99dcc4cc42dfbdca57e2d9dc32bb0e2
+    assemblyName: Unity.2D.Tilemap.Extras.dll
+    namespaceName: UnityEngine
+    className: HexagonalRuleTile
+  - hash:
+      serializedVersion: 2
+      Hash: a2b55b9163c2e7372ecaee07bbcebee9
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.Mechanics
     className: PlayerController
@@ -803,6 +877,12 @@ ScriptsOnlyBuild:
     className: CinemachineBlendListCamera
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Checkpoint
+  - hash:
+      serializedVersion: 2
       Hash: 783f593b9380cf72d0f7ebfd4a0d4bcd
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -819,6 +899,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineMixingCamera
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpikeDamagerController
   - hash:
       serializedVersion: 2
       Hash: aef908e94a9c4eb953102e26170ff9c8
@@ -887,6 +973,12 @@ ScriptsOnlyBuild:
     className: CinemachineVirtualCamera
   - hash:
       serializedVersion: 2
+      Hash: cdf089f6cdbdaf804990606672273b73
+    assemblyName: Unity.2D.Tilemap.Extras.dll
+    namespaceName: UnityEngine.Tilemaps
+    className: WeightedRandomTile
+  - hash:
+      serializedVersion: 2
       Hash: c1933cc0a2f4ff6eb13333347497beb3
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -897,6 +989,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlatformerJumpPad
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PowerStation
   - hash:
       serializedVersion: 2
       Hash: 19e43695d674c08155b5d317b8ea03d0
@@ -939,6 +1037,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.Mechanics
     className: Health
+  - hash:
+      serializedVersion: 2
+      Hash: 416c1816ed1839dc486d5c35d86ee97e
+    assemblyName: Unity.2D.Tilemap.Extras.dll
+    namespaceName: UnityEngine
+    className: IsometricRuleTile
+  - hash:
+      serializedVersion: 2
+      Hash: 3b3bf14021899a113dbb5c9e4f0d86ad
+    assemblyName: Unity.2D.Tilemap.Extras.dll
+    namespaceName: UnityEngine.Tilemaps
+    className: GridInformation
   - hash:
       serializedVersion: 2
       Hash: 6939772cb3ce775a8e8d99f332534491
@@ -995,10 +1105,22 @@ ScriptsOnlyBuild:
     className: CinemachineHardLookAt
   - hash:
       serializedVersion: 2
-      Hash: 80380b449a7206eba6518ee6634ca104
+      Hash: 490a4632ae50fb0b65bba5aaaf7edebd
+    assemblyName: Unity.2D.Tilemap.Extras.dll
+    namespaceName: 
+    className: TintTextureGenerator
+  - hash:
+      serializedVersion: 2
+      Hash: 9fda10ee77f124c6a8119e9bd1bfcde5
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.Mechanics
     className: EnemyController
+  - hash:
+      serializedVersion: 2
+      Hash: 7ba35897a6eb27627ed456c682c34253
+    assemblyName: Unity.2D.Tilemap.Extras.dll
+    namespaceName: UnityEngine.Tilemaps
+    className: TerrainTile
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -1067,6 +1189,12 @@ ScriptsOnlyBuild:
     className: BaseInput
   - hash:
       serializedVersion: 2
+      Hash: 569391c7b1275b6e9f79cf9924ecc797
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PowerUp
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -1121,6 +1249,12 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LavaDamagerController
+  - hash:
+      serializedVersion: 2
       Hash: dbfb4270852b0008a423a7418d9de4cf
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -1173,37 +1307,7 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: LavaDamagerController
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SpikeDamagerController
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: IceCeiling
-  - hash:
-      serializedVersion: 2
-      Hash: 569391c7b1275b6e9f79cf9924ecc797
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PowerUp
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Checkpoint
   platform: 2
   scenePathNames:
   - Assets/test.unity
-  playerPath: /Users/brandonnadell/Desktop/game.app
+  playerPath: /Users/brandonnadell/Desktop/alpha.app

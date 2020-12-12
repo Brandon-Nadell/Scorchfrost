@@ -24,6 +24,8 @@ namespace Platformer.Mechanics
         public GameObject iceBlock;
         public bool immuneToFire;
 
+        // public bool shouldReset;
+
         public Bounds Bounds => _collider.bounds;
 
         void Awake()
@@ -64,9 +66,10 @@ namespace Platformer.Mechanics
             }
         }
 
-        public void CreateIce() {
+        public void CreateIce(PlayerController player) {
             GameObject ib = Instantiate(iceBlock, transform.position, transform.rotation);
             ib.transform.position = new Vector3(Bounds.center.x, Bounds.min.y + ib.GetComponent<Collider2D>().bounds.size.y/2 - .015f, -6);
+            player.GetComponent<AudioSource>().PlayOneShot(player.freezeAudio, .65f);
         }
 
     }

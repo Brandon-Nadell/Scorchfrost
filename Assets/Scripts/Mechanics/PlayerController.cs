@@ -6,6 +6,10 @@ using static Platformer.Core.Simulation;
 using Platformer.Model;
 using Platformer.Core;
 using UnityEngine.UI;
+using TMPro;
+using static System.Array;
+using System;
+using System.Linq;
 
 namespace Platformer.Mechanics
 {
@@ -18,6 +22,10 @@ namespace Platformer.Mechanics
         public AudioClip jumpAudio;
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
+        public AudioClip freezeAudio;
+        public AudioClip fireAudio;
+        public AudioClip powerstationAudio;
+        public AudioClip swapAudio;
 
         /// <summary>
         /// Max horizontal speed of the player.
@@ -45,7 +53,7 @@ namespace Platformer.Mechanics
         internal Animator animator;
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
         public Checkpoint checkpoint;
-        public Text livesText;
+        public TextMeshProUGUI livesText;
         public int lives;
         public int livesMax = 5;
         public bool touchingPowerStation;
@@ -135,8 +143,8 @@ namespace Platformer.Mechanics
             ResetLives();
         }
 
-        protected override void Update()
-        {
+        protected override void FixedUpdate() {
+            base.FixedUpdate();
             if (controlEnabled)
             {
                 if (Input.GetKey("a")) {
@@ -147,10 +155,17 @@ namespace Platformer.Mechanics
                 if (Input.GetKey("a") || Input.GetKey("d")) {
                     accel = Mathf.Min(accel + .1f, 1f);
                 } else {
-                    accel = Mathf.Max(accel - .1f, 0f);
+                    accel = Mathf.Max(accel - (IsGrounded ? .1f: .05f), 0f);
                 }
                 move.x = movedLeftLast ? -accel : accel;
 
+            }
+        }
+
+        protected override void Update()
+        {
+            if (controlEnabled)
+            {
                 if (jumpState == JumpState.Grounded && Input.GetButton("Jump"))
                     jumpState = JumpState.PrepareToJump;
                 else if (Input.GetButtonUp("Jump"))
@@ -159,24 +174,47 @@ namespace Platformer.Mechanics
                     Schedule<PlayerStopJump>().player = this;
                 }
 
+                if (Input.GetKey("left alt") || Input.GetKey("right alt")) {
+                    int index = -1;
+                    if (Input.GetKeyDown("1")) {
+                        index = 0;
+                    } else if (Input.GetKeyDown("2")) {
+                        index = 1;
+                    } else if (Input.GetKeyDown("3")) {
+                        index = 2;
+                    } else if (Input.GetKeyDown("4")) {
+                        index = 3;
+                    } else if (Input.GetKeyDown("r")) {
+                        Application.LoadLevel(Application.loadedLevel);
+                        return;
+                    }
+                    if (index != -1) {
+                        List<Checkpoint> checkpoints = FindObjectsOfType<Checkpoint>().OrderBy(cp => cp.name).ToList();
+                        transform.position = new Vector3(checkpoints[index].transform.position.x, checkpoints[index].transform.position.y, -1);
+                    }
+                }
+
                 if (Input.GetButtonDown("Swap")) {
                     if (!touchingPowerStation) {
-                        if (head != null)
-                            head.gameObject.SetActive(false);
-                        if (feet != null)
-                            feet.SetActive(false);
+                        if (head != null || feet != null) {
+                            if (head != null)
+                                head.gameObject.SetActive(false);
+                            if (feet != null)
+                                feet.SetActive(false);
 
-                        Power temp = headPower;
-                        headPower = feetPower;
-                        feetPower = temp;
-                        SetPowers();
+                            Power temp = headPower;
+                            headPower = feetPower;
+                            feetPower = temp;
+                            SetPowers();
 
-                        if (head != null)
-                            head.gameObject.SetActive(true);
-                        if (feet != null)
-                            feet.SetActive(true);
+                            if (head != null)
+                                head.gameObject.SetActive(true);
+                            if (feet != null)
+                                feet.SetActive(true);
 
-                        SetFlips();
+                            SetFlips();
+                            GetComponent<AudioSource>().PlayOneShot(swapAudio, 1f);
+                        }
                     } else {
                         if (powers.Count >= 3) {
                             PlayerController.Power newpower;
@@ -193,6 +231,7 @@ namespace Platformer.Mechanics
                             if (head != null)
                                 head.gameObject.SetActive(true);
                             SetFlips();
+                            GetComponent<AudioSource>().PlayOneShot(powerstationAudio, 1f);
                         }
                     }
                 } else {
@@ -298,17 +337,19 @@ namespace Platformer.Mechanics
         }
 
         public void AddPower(Power power) {
-            powers.Add(power);
-            if (headPower == Power.None) {
-                headPower = power;
-                SetPowers();
-                head.gameObject.SetActive(true);
-                SetFlips();
-            } else if (feetPower == Power.None) {
-                feetPower = power;
-                SetPowers();
-                feet.SetActive(true);
-                SetFlips();
+            if (!powers.Contains(power)) {
+                powers.Add(power);
+                if (headPower == Power.None) {
+                    headPower = power;
+                    SetPowers();
+                    head.gameObject.SetActive(true);
+                    SetFlips();
+                } else if (feetPower == Power.None) {
+                    feetPower = power;
+                    SetPowers();
+                    feet.SetActive(true);
+                    SetFlips();
+                }
             }
         }
 
@@ -326,7 +367,12 @@ namespace Platformer.Mechanics
         }
 
         public void ResetLives() {
-            lives = livesMax;
+            lives = Mathf.Max(lives, livesMax);
+            livesText.text = "Lives: " + lives;
+        }
+
+        public void AddLives(int amt) {
+            lives += amt;
             livesText.text = "Lives: " + lives;
         }
     }

@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 0}
-  ouch: {fileID: 8300000, guid: b7f741588644cd64bbee6387cb54a96d, type: 3}
+  ouch: {fileID: 8300000, guid: ea21656fb2e5a467c958193c4590a51a, type: 3}
   control: {fileID: 0}
   iceBlock: {fileID: 7922835803327626196, guid: a34f1fa03138d43b2af424862e8b7400,
     type: 3}

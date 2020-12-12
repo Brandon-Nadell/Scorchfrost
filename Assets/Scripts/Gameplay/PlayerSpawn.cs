@@ -1,6 +1,8 @@
 using Platformer.Core;
 using Platformer.Mechanics;
 using Platformer.Model;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Platformer.Gameplay
@@ -15,12 +17,13 @@ namespace Platformer.Gameplay
         public override void Execute()
         {
             var player = model.player;
-            player.lives--;
+            player.AddLives(-1);
             if (player.lives == 0) {
                 player.lives = player.livesMax;
                 player.checkpoint = null;
                 //reset checkpoints, enemies, and player powers
-                // foreach (Checkpoint cp : checkpoints) {
+                // Checkpoint[] checkpoints = Resources.FindObjectsOfTypeAll<Checkpoint>();
+                // foreach (Checkpoint cp in checkpoints) {
                 //     cp.GetComponent<Animator>().SetBool("collected", false);
                 // }
                 // foreach (EnemyController e : enemies) {
@@ -29,8 +32,9 @@ namespace Platformer.Gameplay
                 //         e.state = original = state;
                 //     }
                 // }
+                Application.LoadLevel(Application.loadedLevel);
+                return;
             }
-            player.livesText.text = "Lives: " + player.lives;
             player.collider2d.enabled = true;
             player.controlEnabled = false;
             if (player.audioSource && player.respawnAudio)

@@ -79,7 +79,7 @@ SpriteRenderer:
   m_Sprite: {fileID: -964824239653993824, guid: a9fd4c178e37f478386b934ff90a0053,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.16, y: 0.16}
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 0}
-  ouch: {fileID: 8300000, guid: b7f741588644cd64bbee6387cb54a96d, type: 3}
+  ouch: {fileID: 8300000, guid: ea21656fb2e5a467c958193c4590a51a, type: 3}
   control: {fileID: 0}
   iceBlock: {fileID: 7922835803327626196, guid: 6916c8488c0114e3496f88b7231c097c,
     type: 3}
