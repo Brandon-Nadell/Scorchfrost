@@ -58,6 +58,8 @@ namespace Platformer.Mechanics
         public int livesMax = 5;
         public bool touchingPowerStation;
         int powerstationindex;
+        public GameObject currentPopup;
+        public bool victory;
 
         public Bounds Bounds => collider2d.bounds;
         // public List<Pusher> pushers;

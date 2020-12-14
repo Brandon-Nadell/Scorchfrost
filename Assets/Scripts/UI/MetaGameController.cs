@@ -1,5 +1,7 @@
 using Platformer.Mechanics;
 using Platformer.UI;
+using Platformer.Core;
+using Platformer.Model;
 using UnityEngine;
 
 namespace Platformer.UI
@@ -24,6 +26,8 @@ namespace Platformer.UI
         /// The game controller.
         /// </summary>
         public GameController gameController;
+
+        public GameObject endScreen;
 
         bool showMainCanvas = false;
 
@@ -65,8 +69,30 @@ namespace Platformer.UI
         {
             if (Input.GetButtonDown("Menu"))
             {
-                ToggleMainMenu(show: !showMainCanvas);
+                if (endScreen.activeSelf) {
+                    ToggleEndScreen(false);      
+                } else {
+                    ToggleMainMenu(show: !showMainCanvas);
+                }
             }
+            if (Simulation.GetModel<PlatformerModel>().player.victory) {
+                ToggleEndScreen(true);
+            }
+        }
+
+        void ToggleEndScreen(bool show) {
+            if (show) {
+                Time.timeScale = 0;
+                endScreen.SetActive(true);
+            } else {
+                Time.timeScale = 1;
+                endScreen.SetActive(false);
+                Simulation.GetModel<PlatformerModel>().player.victory = false;
+            }
+        }
+
+        public void Quit() {
+            Application.Quit();
         }
 
     }

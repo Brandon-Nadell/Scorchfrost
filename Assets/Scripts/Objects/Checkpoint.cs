@@ -12,10 +12,12 @@ public class Checkpoint : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision) {
         if (!GetComponent<Animator>().GetBool("collected")) {
             var player = collision.gameObject.GetComponent<PlayerController>();
-            player.SetCheckpoint(this);
-            player.ResetLives();
-            GetComponent<Animator>().SetBool("collected", true);
-            player.GetComponent<AudioSource>().PlayOneShot(clip, 1f);
+            if (player != null) {
+                player.SetCheckpoint(this);
+                player.ResetLives();
+                GetComponent<Animator>().SetBool("collected", true);
+                player.GetComponent<AudioSource>().PlayOneShot(clip, 1f);
+            }
         }
     }
 }

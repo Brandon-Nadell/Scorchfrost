@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Checkpoint
     - GhostFader
+    - Heart
     - IceCeiling
     - LavaDamagerController
     - Platformer.Mechanics.AnimationController
@@ -12,12 +13,12 @@ ScriptsOnlyBuild:
     - Platformer.Mechanics.Health
     - Platformer.Mechanics.PatrolPath
     - Platformer.Mechanics.PlayerController
-    - Platformer.Mechanics.TokenController
     - Platformer.Mechanics.VictoryZone
     - Platformer.UI.MainUIController
     - Platformer.UI.MetaGameController
     - Platformer.View.ParallaxLayer
     - PlayAudioClip
+    - PopupTrigger
     - PowerStation
     - PowerUp
     - Pusher
@@ -51,19 +52,7 @@ ScriptsOnlyBuild:
     Unity.InteractiveTutorials.Core.Scripts.dll:
     - SceneObjectGUIDComponent
     Unity.InteractiveTutorials.Core.dll:
-    - Unity.InteractiveTutorials.ActiveToolCriterion
     - Unity.InteractiveTutorials.AnalyticsHelper
-    - Unity.InteractiveTutorials.BuildStartedCriterion
-    - Unity.InteractiveTutorials.EditorWindowCriterion
-    - Unity.InteractiveTutorials.FutureObjectReference
-    - Unity.InteractiveTutorials.InstantiatePrefabCriterion
-    - Unity.InteractiveTutorials.PlayModeStateCriterion
-    - Unity.InteractiveTutorials.PropertyModificationCriterion
-    - Unity.InteractiveTutorials.RequiredSelectionCriterion
-    - Unity.InteractiveTutorials.SceneViewCameraMovedCriterion
-    - Unity.InteractiveTutorials.Tutorial
-    - Unity.InteractiveTutorials.TutorialContainer
-    - Unity.InteractiveTutorials.TutorialPage
     - Unity.InteractiveTutorials.TutorialWindow
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -76,8 +65,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -91,7 +82,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
-    - UnityEngine.UI.Text
   sceneClasses:
     Assets/test.unity:
     - Class: 1
@@ -111,6 +101,8 @@ ScriptsOnlyBuild:
     - Class: 49
       Script: {instanceID: 0}
     - Class: 50
+      Script: {instanceID: 0}
+    - Class: 58
       Script: {instanceID: 0}
     - Class: 60
       Script: {instanceID: 0}
@@ -141,8 +133,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11346}
     - Class: 114
-      Script: {instanceID: 11610}
-    - Class: 114
       Script: {instanceID: 11664}
     - Class: 114
       Script: {instanceID: 11688}
@@ -168,8 +158,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12656}
     - Class: 114
       Script: {instanceID: 12736}
-    - Class: 114
-      Script: {instanceID: 12934}
     - Class: 114
       Script: {instanceID: 12964}
     - Class: 114
@@ -218,9 +206,11 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14154}
     - Class: 114
       Script: {instanceID: 14172}
+    - Class: 114
+      Script: {instanceID: 1538650}
+    - Class: 114
+      Script: {instanceID: 2003846}
     - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -431,12 +421,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.Mechanics
     className: GameController
-  - hash:
-      serializedVersion: 2
-      Hash: 89cbcfa77989979e1843b899c81094a8
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: EmitParticlesOnLand
   - hash:
       serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
@@ -673,12 +657,6 @@ ScriptsOnlyBuild:
     className: ChromaticAberration
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: TemplateEditorDetection
-  - hash:
-      serializedVersion: 2
       Hash: 7ec884402e82a75991e16446671fbc6d
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.View
@@ -721,7 +699,7 @@ ScriptsOnlyBuild:
     className: SceneObjectGUIDComponent
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 18c152473ea259b38afa9f6b7c7a6966
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.Mechanics
     className: DeathZone
@@ -823,7 +801,7 @@ ScriptsOnlyBuild:
     className: HexagonalRuleTile
   - hash:
       serializedVersion: 2
-      Hash: a2b55b9163c2e7372ecaee07bbcebee9
+      Hash: 564b5d4a91e31692a400d5085aedeb6e
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.Mechanics
     className: PlayerController
@@ -853,12 +831,6 @@ ScriptsOnlyBuild:
     className: CinemachineImpulseListener
   - hash:
       serializedVersion: 2
-      Hash: 697068b4cb32f8d7d4a3c7eb151f90df
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SimpleTrigger
-  - hash:
-      serializedVersion: 2
       Hash: e6d75f1a9bc0c6f7085df0baa077e688
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -877,7 +849,7 @@ ScriptsOnlyBuild:
     className: CinemachineBlendListCamera
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 18c152473ea259b38afa9f6b7c7a6966
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Checkpoint
@@ -985,12 +957,6 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 8cdb91c0a256015dd944c9e40bc5269e
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlatformerJumpPad
-  - hash:
-      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1001,18 +967,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayAudioClip
-  - hash:
-      serializedVersion: 2
-      Hash: 8fe40c8bf353515a50e0f2195adb646d
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlatformerSpeedPad
-  - hash:
-      serializedVersion: 2
-      Hash: f6deae28b27a51627c56b8454123117f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Jiggler
   - hash:
       serializedVersion: 2
       Hash: 6225eb0973ab0af667bc5f9d1b1b18de
@@ -1177,7 +1131,7 @@ ScriptsOnlyBuild:
     className: MainUIController
   - hash:
       serializedVersion: 2
-      Hash: 92f1a6fa53cef8a4f50f40db8fdbdd93
+      Hash: 6f2671f195e7ed262baff98e1734e8a8
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.UI
     className: MetaGameController
@@ -1189,7 +1143,7 @@ ScriptsOnlyBuild:
     className: BaseInput
   - hash:
       serializedVersion: 2
-      Hash: 569391c7b1275b6e9f79cf9924ecc797
+      Hash: b071063cc1c801eeb8e7bce22b109332
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PowerUp
@@ -1307,7 +1261,19 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 8cfb40196c3839093277c524fdbcdfef
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Heart
+  - hash:
+      serializedVersion: 2
+      Hash: 95b41cf6411887d13783ecc52ab5ca87
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PopupTrigger
   platform: 19
   scenePathNames:
   - Assets/test.unity
-  playerPath: /Users/brandonnadell/Desktop/BrandonNadell_Scorchfrost/New Unity Project.exe
+  playerPath: /Users/brandonnadell/Desktop/beta/New Unity Project.exe
