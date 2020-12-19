@@ -19,9 +19,11 @@ public class PopupTrigger : MonoBehaviour
                     player.currentPopup.SetActive(false);
                 }
                 player.currentPopup = popup;
-                popup.SetActive(true);
-                Invoke("DisablePopup", 8f);
-                triggered = true;
+                if (popup != null) {
+                    popup.SetActive(true);
+                    Invoke("DisablePopup", 8f);
+                    triggered = true;
+                }
             }
         }
     }

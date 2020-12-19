@@ -10,6 +10,7 @@ using TMPro;
 using static System.Array;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 namespace Platformer.Mechanics
 {
@@ -37,7 +38,7 @@ namespace Platformer.Mechanics
         public float jumpTakeOffSpeed = 7;
 
         public JumpState jumpState = JumpState.Grounded;
-        private bool stopJump;
+        // private bool stopJump;
         /*internal new*/ public Collider2D collider2d;
         /*internal new*/ public AudioSource audioSource;
         public Health health;
@@ -60,9 +61,9 @@ namespace Platformer.Mechanics
         int powerstationindex;
         public GameObject currentPopup;
         public bool victory;
+        public bool pitDeath;
 
         public Bounds Bounds => collider2d.bounds;
-        // public List<Pusher> pushers;
         public Pusher pusherL;
         public Pusher pusherR;
         public Pusher pusherB;
@@ -172,8 +173,8 @@ namespace Platformer.Mechanics
                     jumpState = JumpState.PrepareToJump;
                 else if (Input.GetButtonUp("Jump"))
                 {
-                    stopJump = true;
-                    Schedule<PlayerStopJump>().player = this;
+                    // stopJump = true;
+                    // Schedule<PlayerStopJump>().player = this;
                 }
 
                 if (Input.GetKey("left alt") || Input.GetKey("right alt")) {
@@ -186,9 +187,19 @@ namespace Platformer.Mechanics
                         index = 2;
                     } else if (Input.GetKeyDown("4")) {
                         index = 3;
+                    } else if (Input.GetKeyDown("5")) {
+                        index = 4;
+                    } else if (Input.GetKeyDown("6")) {
+                        index = 5;
                     } else if (Input.GetKeyDown("r")) {
-                        Application.LoadLevel(Application.loadedLevel);
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                         return;
+                    } else if (Input.GetKeyDown("f")) {
+                        AddPower(Power.Fire);
+                    } else if (Input.GetKeyDown("i")) {
+                        AddPower(Power.Ice);
+                    } else if (Input.GetKeyDown("a")) {
+                        AddPower(Power.Air);
                     }
                     if (index != -1) {
                         List<Checkpoint> checkpoints = FindObjectsOfType<Checkpoint>().OrderBy(cp => cp.name).ToList();
@@ -224,7 +235,6 @@ namespace Platformer.Mechanics
                                 powerstationindex++;
                                 newpower = powers[powerstationindex % powers.Count];
                             } while (newpower == feetPower || newpower == headPower);
-                            // Debug.Log(newpower);
 
                             if (head != null)
                                 head.gameObject.SetActive(false);
@@ -281,19 +291,19 @@ namespace Platformer.Mechanics
                 case JumpState.PrepareToJump:
                     jumpState = JumpState.Jumping;
                     jump = true;
-                    stopJump = false;
+                    // stopJump = false;
                     break;
                 case JumpState.Jumping:
-                    if (!IsGrounded)
-                    {
+                    // if (!IsGrounded)
+                    // {
                         Schedule<PlayerJumped>().player = this;
                         jumpState = JumpState.InFlight;
-                    }
+                    // }
                     break;
                 case JumpState.InFlight:
                     if (IsGrounded)
                     {
-                        Schedule<PlayerLanded>().player = this;
+                        // Schedule<PlayerLanded>().player = this;
                         jumpState = JumpState.Landed;
                     }
                     break;
@@ -310,10 +320,10 @@ namespace Platformer.Mechanics
                 velocity.y = jumpTakeOffSpeed;
                 jump = false;
             }
-            else if (stopJump)
-            {
-                stopJump = false;
-            }
+            // else if (stopJump)
+            // {
+            //     stopJump = false;
+            // }
 
             if (move.x > .0f)
                 flipX = false;

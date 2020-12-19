@@ -9,7 +9,7 @@ public class LavaDamagerController : MonoBehaviour
 {
     void OnCollisionStay2D(Collision2D collision) {
         var player = collision.gameObject.GetComponent<PlayerController>();
-        if (player.feetPower != PlayerController.Power.Fire) {
+        if (player != null && player.feetPower != PlayerController.Power.Fire) {
             Schedule<Damager>();
         }
     }

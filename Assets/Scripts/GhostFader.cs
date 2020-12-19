@@ -19,7 +19,10 @@ public class GhostFader : MonoBehaviour
                 c.a = (timer - 30)/30f;
                 GetComponent<SpriteRenderer>().color = c;
                 if (timer == 45) {
+                    GetComponent<Collider2D>().isTrigger = true;
                     GetComponent<Collider2D>().enabled = true;
+                } else if (timer == 50) {
+                    GetComponent<Collider2D>().isTrigger = false;
                 }
             } else if (timer >= 90 && timer <= 120) {
                 Color c = GetComponent<SpriteRenderer>().color;

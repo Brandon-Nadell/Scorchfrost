@@ -29,6 +29,8 @@ namespace Platformer.Mechanics
         public Vector2 velocity;
         protected float accel;
         public bool immobile;
+        public Vector2 freeMovement = new Vector2(1, 1);
+        public bool lookat;
 
         /// <summary>
         /// Is the entity currently sitting on a surface?
@@ -120,17 +122,27 @@ namespace Platformer.Mechanics
                             velocity = new Vector2(velocity.x, -1);
                         }
                     }
-                } else if (!flying) {
-                    velocity += Physics2D.gravity * Time.deltaTime;
+                } else {
+                    // velocity = new Vector2(velocity.x + Physics2D.gravity.x * Time.deltaTime, velocity.y + (!flying ? (Physics2D.gravity.y * Time.deltaTime) : 0));
+                    if (!flying) {
+                        velocity += Physics2D.gravity * Time.deltaTime;
+                    }
                 }
 
+
                 velocity.x = targetVelocity.x;
+                if (flying)
+                    velocity.y = targetVelocity.y;
 
                 IsGrounded = false;
 
                 var deltaPosition = velocity * Time.deltaTime;
 
                 var moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+
+                if (moveAlongGround.x == 0 && moveAlongGround.y == 0) {
+                    moveAlongGround = new Vector2(freeMovement.x, freeMovement.y);
+                }
 
                 var move = moveAlongGround * deltaPosition.x;
 
@@ -156,7 +168,6 @@ namespace Platformer.Mechanics
                     var currentNormal = hitBuffer[i].normal;
 
                     //is this surface flat enough to land on?
-                    // Debug.Log(currentNormal.y + " " + minGroundNormalY);
                     if (currentNormal.y > minGroundNormalY)
                     {
                     IsGrounded = true;
@@ -169,7 +180,6 @@ namespace Platformer.Mechanics
                     } else if (currentNormal.y != -1) {
                         accel = 0f;
                     }
-                    Debug.Log(IsGrounded);
                     if (true)
                     {
                         //how much of our velocity aligns with surface normal?
@@ -180,13 +190,13 @@ namespace Platformer.Mechanics
                             velocity = velocity - projection * currentNormal;
                         }
                     }
-                    else
-                    {
-                        //We are airborne, but hit something, so cancel vertical up and horizontal velocity.
-                        move.x *= 0;
-                        velocity.x *= 0;
-                        velocity.y = Mathf.Min(velocity.y, 0);
-                    }
+                    // else
+                    // {
+                    //     //We are airborne, but hit something, so cancel vertical up and horizontal velocity.
+                    //     move.x *= 0;
+                    //     velocity.x *= 0;
+                    //     velocity.y = Mathf.Min(velocity.y, 0);
+                    // }
                     //remove shellDistance from actual move distance.
                     var modifiedDistance = hitBuffer[i].distance - shellRadius;
                     distance = modifiedDistance < distance ? modifiedDistance : distance;

@@ -21,8 +21,21 @@ namespace Platformer.Gameplay
                 player.health.Die();
                 model.virtualCamera.m_Follow = null;
                 model.virtualCamera.m_LookAt = null;
-                // player.collider.enabled = false;
+                
+                player.GetComponent<Collider2D>().enabled = false;
+                if (!player.pitDeath) {
+                    player.velocity *= 0;
+                    player.flying = true;
+                    player.immobile = true;
+                    player.GetComponent<SpriteRenderer>().color = new Color(1f, .5f, .5f, player.GetComponent<SpriteRenderer>().color.a);
+                    foreach (SpriteRenderer sr in player.GetComponentsInChildren<SpriteRenderer>()) {
+                        sr.color = new Color(1f, .5f, .5f, sr.color.a);
+                    }
+                }
+                player.pitDeath = false;
+
                 player.controlEnabled = false;
+
 
                 if (player.audioSource && player.ouchAudio)
                     player.audioSource.PlayOneShot(player.ouchAudio);

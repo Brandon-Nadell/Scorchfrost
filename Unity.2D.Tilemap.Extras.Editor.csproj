@@ -46,6 +46,7 @@
      <Compile Include="Assets\2d-extras-master\Editor\Brushes\PrefabBrushes\PrefabRandomBrush\PrefabRandomBrush.cs" />
      <Compile Include="Assets\2d-extras-master\Editor\Brushes\RandomBrush\RandomBrush.cs" />
      <Compile Include="Assets\2d-extras-master\Editor\Brushes\RandomBrush\RandomBrush2.cs" />
+     <Compile Include="Assets\2d-extras-master\Editor\Brushes\RandomBrush\RandomBrush3.cs" />
      <Compile Include="Assets\2d-extras-master\Editor\Brushes\TintBrush\TintBrush.cs" />
      <Compile Include="Assets\2d-extras-master\Editor\Brushes\TintBrushSmooth\TintBrushSmooth.cs" />
      <Compile Include="Assets\2d-extras-master\Editor\Menu\CustomRuleTileMenu.cs" />

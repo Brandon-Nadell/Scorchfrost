@@ -14,6 +14,7 @@ namespace Platformer.Mechanics
     {
         public PatrolPath path;
         public AudioClip ouch;
+        public bool lookat;
 
         public PatrolPath.Mover mover;
         public AnimationController control;
@@ -23,8 +24,6 @@ namespace Platformer.Mechanics
 
         public GameObject iceBlock;
         public bool immuneToFire;
-
-        // public bool shouldReset;
 
         public Bounds Bounds => _collider.bounds;
 
@@ -63,13 +62,16 @@ namespace Platformer.Mechanics
             {  
                 if (mover == null) mover = path.CreateMover(control.maxSpeed * 0.5f);
                 control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
+                control.move.y = Mathf.Clamp(mover.Position.y - transform.position.y, -1, 1);
             }
         }
 
-        public void CreateIce(PlayerController player) {
+        public float CreateIce(PlayerController player) {
             GameObject ib = Instantiate(iceBlock, transform.position, transform.rotation);
             ib.transform.position = new Vector3(Bounds.center.x, Bounds.min.y + ib.GetComponent<Collider2D>().bounds.size.y/2 - .015f, -6);
             player.GetComponent<AudioSource>().PlayOneShot(player.freezeAudio, .65f);
+
+            return ib.GetComponent<Collider2D>().bounds.max.y;
         }
 
     }

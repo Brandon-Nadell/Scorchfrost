@@ -36,7 +36,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\PoisonDamageController.cs" />
      <Compile Include="Assets\PopupTrigger.cs" />
+     <Compile Include="Assets\Resetter.cs" />
      <Compile Include="Assets\Scripts\Core\Fuzzy.cs" />
      <Compile Include="Assets\Scripts\Core\HeapQueue.cs" />
      <Compile Include="Assets\Scripts\Core\Simulation.Event.cs" />
@@ -84,6 +86,7 @@
      <Compile Include="Assets\Scripts\UI\MetaGameController.cs" />
      <Compile Include="Assets\Scripts\View\AnimatedTile.cs" />
      <Compile Include="Assets\Scripts\View\ParallaxLayer.cs" />
+     <Compile Include="Assets\YStopper.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

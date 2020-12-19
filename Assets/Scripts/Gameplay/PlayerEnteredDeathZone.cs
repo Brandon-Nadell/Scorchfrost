@@ -17,6 +17,7 @@ namespace Platformer.Gameplay
 
         public override void Execute()
         {
+            model.player.pitDeath = true;
             Simulation.Schedule<PlayerDeath>(0);
         }
     }

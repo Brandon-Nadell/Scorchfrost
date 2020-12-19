@@ -4,6 +4,7 @@ using Platformer.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Platformer.Gameplay
 {
@@ -21,22 +22,17 @@ namespace Platformer.Gameplay
             if (player.lives == 0) {
                 player.lives = player.livesMax;
                 player.checkpoint = null;
-                //reset checkpoints, enemies, and player powers
-                // Checkpoint[] checkpoints = Resources.FindObjectsOfTypeAll<Checkpoint>();
-                // foreach (Checkpoint cp in checkpoints) {
-                //     cp.GetComponent<Animator>().SetBool("collected", false);
-                // }
-                // foreach (EnemyController e : enemies) {
-                //     e.Reset();
-                //     -> {
-                //         e.state = original = state;
-                //     }
-                // }
-                Application.LoadLevel(Application.loadedLevel);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 return;
             }
-            player.collider2d.enabled = true;
+            player.GetComponent<Collider2D>().enabled = true;
             player.controlEnabled = false;
+            player.flying = false;
+            player.immobile = false;
+            player.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, player.GetComponent<SpriteRenderer>().color.a);
+            foreach (SpriteRenderer sr in player.GetComponentsInChildren<SpriteRenderer>()) {
+                sr.color = new Color(1f, 1f, 1f, sr.color.a);
+            }
             if (player.audioSource && player.respawnAudio)
                 player.audioSource.PlayOneShot(player.respawnAudio);
             player.health.Increment();

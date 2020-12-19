@@ -3,6 +3,7 @@ using Platformer.UI;
 using Platformer.Core;
 using Platformer.Model;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Platformer.UI
 {
@@ -69,9 +70,7 @@ namespace Platformer.UI
         {
             if (Input.GetButtonDown("Menu"))
             {
-                if (endScreen.activeSelf) {
-                    ToggleEndScreen(false);      
-                } else {
+                if (!endScreen.activeSelf) {
                     ToggleMainMenu(show: !showMainCanvas);
                 }
             }
@@ -93,6 +92,10 @@ namespace Platformer.UI
 
         public void Quit() {
             Application.Quit();
+        }
+
+        public void Restart() {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
     }

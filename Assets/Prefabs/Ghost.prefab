@@ -173,6 +173,8 @@ MonoBehaviour:
   invulnerable: 1
   velocity: {x: 0, y: 0}
   immobile: 0
+  freeMovement: {x: 1, y: 1}
+  lookat: 0
   targetVelocity: {x: 0, y: 0}
   maxSpeed: 7
   jumpTakeOffSpeed: 7
@@ -193,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 0}
   ouch: {fileID: 8300000, guid: ea21656fb2e5a467c958193c4590a51a, type: 3}
+  lookat: 0
   control: {fileID: 0}
   iceBlock: {fileID: 39188850797446762, guid: 6527b4a1090574ce7b64975ad0d95e1c, type: 3}
   immuneToFire: 1

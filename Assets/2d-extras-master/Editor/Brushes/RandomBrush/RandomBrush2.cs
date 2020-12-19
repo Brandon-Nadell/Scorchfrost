@@ -11,7 +11,7 @@ namespace UnityEditor.Tilemaps
     /// Use this as an example to create brushes which store specific data per brush and to make brushes which randomize behaviour.
     /// </summary>
     [HelpURL("https://docs.unity3d.com/Packages/com.unity.2d.tilemap.extras@latest/index.html?subfolder=/manual/RandomBrush.html")]
-    [CustomGridBrush(false, false, false, "Random Brush")]
+    [CustomGridBrush(false, false, false, "Random Brush GroundBottom")]
     public class RandomBrush2 : GridBrush
     {
         internal struct SizeEnumerator : IEnumerator<Vector3Int>

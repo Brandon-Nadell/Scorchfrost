@@ -20,20 +20,32 @@ namespace Platformer.Gameplay
 
         public override void Execute()
         {
+
             var willHurtEnemy = player.Bounds.center.y >= enemy.Bounds.max.y;
             if (willHurtEnemy) {
-                if (player.feetPower == PlayerController.Power.Ice && player.Bounds.min.y + .1f >= enemy.Bounds.max.y) {
-                    enemy.CreateIce(player);
-                    // player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + diff, player.transform.position.z);
-                    enemy.path = null;
-                    enemy.mover = null;
-                    enemy._collider.enabled = false;
-                    enemy.control.immobile = true;
-                    // enemy.control.enabled = false;
-                    enemy.GetComponent<AnimationController>().flying = true;
-                    enemy.GetComponent<AnimationController>().invulnerable = true;
-                    enemy.GetComponent<Animator>().Play("idle", -1, 0f);
-                    enemy.GetComponent<Animator>().enabled = false;
+                if (player.feetPower == PlayerController.Power.Ice) {
+                    if (player.Bounds.min.y + .1f >= enemy.Bounds.max.y) {
+                        float y = player.transform.position.y;
+
+                        // force teleport player only if at least 2 pixels into ice
+                        // if (player.GetComponent<Collider2D>().bounds.min.y <= top + .05f) {
+                            // player.transform.position = new Vector3(player.transform.position.x, top + player.GetComponent<Collider2D>().bounds.size.y/2 + .111f, player.transform.position.z);
+                        // }
+                        float top = enemy.CreateIce(player);
+                        player.transform.position = new Vector3(player.transform.position.x, Mathf.Max(y, top + player.GetComponent<SpriteRenderer>().bounds.size.y/2) + .015f, player.transform.position.z);
+                        // player.transform.position = new Vector3(player.transform.position.x, y, player.transform.position.z);
+                        player.velocity.y *= 0;
+
+                        enemy.path = null;
+                        enemy.mover = null;
+                        enemy._collider.enabled = false;
+                        enemy.control.immobile = true;
+                        // enemy.control.enabled = false;
+                        enemy.GetComponent<AnimationController>().flying = true;
+                        enemy.GetComponent<AnimationController>().invulnerable = true;
+                        enemy.GetComponent<Animator>().Play("idle", -1, 0f);
+                        enemy.GetComponent<Animator>().enabled = false;
+                    }
                 } else {
                     var enemyHealth = enemy.GetComponent<Health>();
                     if (enemyHealth != null)
@@ -56,7 +68,7 @@ namespace Platformer.Gameplay
                         }
                     }
                 }
-            } else if (player.headPower == PlayerController.Power.Fire && !enemy.immuneToFire && player.Bounds.max.y <= enemy.Bounds.center.y && Mathf.Abs(player.Bounds.center.x - enemy.Bounds.center.x) < 2) {
+            } else if (player.headPower == PlayerController.Power.Fire && !enemy.immuneToFire && player.Bounds.max.y <= enemy.Bounds.center.y && player.velocity.y >= 0) {
                 var enemyHealth = enemy.GetComponent<Health>();
                 if (enemyHealth != null) {
                     enemyHealth.Decrement();

@@ -62,9 +62,9 @@ namespace Platformer.Mechanics
                 // }
             }
 
-            if (move.x > 0.01f)
+            if (move.x > 0.011f)
                 spriteRenderer.flipX = false;
-            else if (move.x < -0.01f)
+            else if (move.x < -0.011f)
                 spriteRenderer.flipX = true;
 
             // animator.SetBool("grounded", IsGrounded);

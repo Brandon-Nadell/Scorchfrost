@@ -18,12 +18,14 @@ ScriptsOnlyBuild:
     - Platformer.UI.MetaGameController
     - Platformer.View.ParallaxLayer
     - PlayAudioClip
+    - PoisonDamageController
     - PopupTrigger
     - PowerStation
     - PowerUp
     - Pusher
     - SemiSolid
     - SpikeDamagerController
+    - YStopper
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
     - Cinemachine.CinemachineConfiner
@@ -47,6 +49,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.LineBrush
     - UnityEditor.Tilemaps.RandomBrush
     - UnityEditor.Tilemaps.RandomBrush2
+    - UnityEditor.Tilemaps.RandomBrush3
     - UnityEditor.Tilemaps.TintBrush
     - UnityEditor.Tilemaps.TintBrushSmooth
     Unity.InteractiveTutorials.Core.Scripts.dll:
@@ -210,6 +213,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 1538650}
     - Class: 114
       Script: {instanceID: 2003846}
+    - Class: 114
+      Script: {instanceID: 2247372}
+    - Class: 114
+      Script: {instanceID: 7786612}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -279,7 +286,7 @@ ScriptsOnlyBuild:
     className: TMP_SelectionCaret
   - hash:
       serializedVersion: 2
-      Hash: 5add83554b81d86ee02cafc1219ee990
+      Hash: 928d661e9d85a8ce565b491936fe4841
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.Mechanics
     className: KinematicObject
@@ -441,7 +448,7 @@ ScriptsOnlyBuild:
     className: CinemachineExternalCamera
   - hash:
       serializedVersion: 2
-      Hash: 9c564edec54ebe793f03ec203591a8bc
+      Hash: 5a2adc95435c7d5286be3bf874d3db55
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.Mechanics
     className: AnimationController
@@ -801,7 +808,7 @@ ScriptsOnlyBuild:
     className: HexagonalRuleTile
   - hash:
       serializedVersion: 2
-      Hash: 564b5d4a91e31692a400d5085aedeb6e
+      Hash: 15576a381b054a016695636ac070aebb
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.Mechanics
     className: PlayerController
@@ -819,7 +826,7 @@ ScriptsOnlyBuild:
     className: CinemachineTransposer
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 8c1430f36542a7b405e35e0867aa315f
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.Mechanics
     className: VictoryZone
@@ -1011,7 +1018,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: 0f15034f74dcf7097a63e50a3539c638
+      Hash: b9c019b93c40388b445228017c4c659d
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.Mechanics
     className: PatrolPath
@@ -1065,7 +1072,7 @@ ScriptsOnlyBuild:
     className: TintTextureGenerator
   - hash:
       serializedVersion: 2
-      Hash: 9fda10ee77f124c6a8119e9bd1bfcde5
+      Hash: 899814c3dc7adc605e0f846005cc8633
     assemblyName: Assembly-CSharp.dll
     namespaceName: Platformer.Mechanics
     className: EnemyController
@@ -1273,7 +1280,25 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PopupTrigger
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PoisonDamageController
+  - hash:
+      serializedVersion: 2
+      Hash: 44d0cd522e4b18b4c6021d4116ef3f1f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Resetter
+  - hash:
+      serializedVersion: 2
+      Hash: 842e477f38417b823e84462b5ac935db
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: YStopper
   platform: 2
   scenePathNames:
   - Assets/test.unity
-  playerPath: /Users/brandonnadell/Desktop/beta.app
+  playerPath: /Users/brandonnadell/Desktop/Scorchfrost (Mac).app
